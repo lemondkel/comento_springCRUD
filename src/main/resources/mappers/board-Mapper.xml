@@ -6,8 +6,8 @@
 <mapper namespace="com.learn.mapper.BoardMapper">
 	
 	<insert id="create">
-		insert into tbl_board (title, content, writer)
-		values(#{title}, #{content}, #{writer})
+		insert into tbl_board (bno, title, content, writer)
+		values( (SELECT MAX(bno) + 1 FROM tbl_board ), #{title}, #{content}, #{writer} )
 	</insert>
 	<select id="read" resultType="com.learn.domain.BoardVO">
 		select bno, title, content, writer, regdate, viewcnt
